@@ -33,26 +33,71 @@
 <button mat-flat-button color="warn" disableRipple>Click me!</button>
 
 <mat-button-toggle #toggleBtn checked>Toggle</mat-button-toggle>
-{{toggleBtn.checked}}
+{{ toggleBtn.checked }}
 
 <mat-button-toggle-group #toggleGroup="matButtonToggleGroup" multiple>
   <mat-button-toggle value="angular">Angular</mat-button-toggle>
   <mat-button-toggle value="react">React</mat-button-toggle>
   <mat-button-toggle value="vue">Vue</mat-button-toggle>
 </mat-button-toggle-group>
-{{toggleGroup.value}}
+{{ toggleGroup.value }}
 
 <mat-icon color="primary">grade</mat-icon>
 
 <div>
-<span [matBadge]="notifications" [matBadgeHidden]="notifications === 0"  matBadgeOverlap="false"><mat-icon>favorite</mat-icon></span>
+  <span
+    [matBadge]="notifications"
+    [matBadgeHidden]="notifications === 0"
+    matBadgeOverlap="false"
+    ><mat-icon>favorite</mat-icon></span
+  >
 </div>
 <div>
-<span matBadge="5" matBadgePosition="below before" matBadgeSize="small"><mat-icon>favorite</mat-icon></span>
+  <span matBadge="5" matBadgePosition="below before" matBadgeSize="small"
+    ><mat-icon>favorite</mat-icon></span
+  >
 </div>
 <div>
-<span matBadge="5" matBadgePosition="below after"><mat-icon>favorite</mat-icon></span>
+  <span matBadge="5" matBadgePosition="below after"
+    ><mat-icon>favorite</mat-icon></span
+  >
 </div>
 <div>
-<span matBadge="5" matBadgePosition="above before" matBadgeSize="large" matBadgeColor="warn"><mat-icon>favorite</mat-icon></span>
+  <span
+    matBadge="5"
+    matBadgePosition="above before"
+    matBadgeSize="large"
+    matBadgeColor="warn"
+    ><mat-icon>favorite</mat-icon></span
+  >
 </div>
+
+<mat-progress-spinner value="100"></mat-progress-spinner>
+<mat-spinner *ngIf="showSpinner"></mat-spinner>
+<button (click)="loadData()">Load Data</button>
+
+<mat-toolbar class="navbar" color="primary">
+  <div>Codevolution</div>
+  <div>
+    <span>Home</span>
+    <span>About</span>
+    <span>Services</span>
+  </div>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav
+    #sidenav
+    mode="side"
+    (opened)="log('Opened')"
+    (closed)="log('Closed')"
+    [(opened)]="opened"
+    >Sidenav</mat-sidenav
+  >
+  <mat-sidenav-content
+    >Main
+    <button (click)="opened = !opened">Toggle Opened</button>
+    <button (click)="sidenav.open()">Open</button>
+    <button (click)="sidenav.close()">Close</button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
