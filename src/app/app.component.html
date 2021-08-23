@@ -203,3 +203,31 @@
     <p>Place Order</p>
   </mat-step>
 </mat-horizontal-stepper>
+
+<mat-form-field floatLabel="auto" appearance="fill" color="warn">
+  <mat-label>Name</mat-label>
+  <input matInput required>
+  <mat-hint align="end">Min 5 characters</mat-hint>
+</mat-form-field>
+
+<mat-form-field>
+  <mat-select [(value)]="selectedValue">
+    <mat-label>Topic</mat-label>
+    <mat-option>None</mat-option>
+    <mat-option value="angular">Angular</mat-option>
+    <mat-option value="react">React</mat-option>
+    <mat-option value="vue">Vue</mat-option>
+  </mat-select>
+</mat-form-field>
+{{selectedValue}}
+
+<form>
+  <mat-form-field>
+    <input type="text" matInput [matAutocomplete]="auto" [formControl]="myControl">
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of filteredOptions | async" value="option">
+        {{option}}
+      </mat-option>
+    </mat-autocomplete>
+  </mat-form-field>
+</form>
