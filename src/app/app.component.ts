@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import {FormControl} from '@angular/forms'
 import { Observable } from 'rxjs';
 import { map, startWith  } from 'rxjs/operators/'
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog'
+import { DialogComponent } from './dialog/dialog.component';
 
 @Component({
   selector: 'app-root',
@@ -23,6 +26,11 @@ export class AppComponent implements OnInit {
 
   myControl = new FormControl();
   filteredOptions!: Observable<string[]>
+  minDate = new Date();
+  maxDate = new Date(2022, 0, 30);
+
+  constructor(private snackBar: MatSnackBar, public dialog: MatDialog ) {}
+  
 
   ngOnInit() {
     this.filteredOptions = this.myControl.valueChanges.pipe(
@@ -56,5 +64,31 @@ export class AppComponent implements OnInit {
   logChange(index: any) {
     console.log(index)
   }
+
+  dateFilter = (date:any) => {
+    const day = date.getDay();
+    return day === 0 && day === 6;
+  }
+
+  openSnackBar(message:any, action:any) {
+    let snackBarRef = this.snackBar.open(message, action, {duration: 2000});
+
+    snackBarRef.afterDismissed().subscribe(() => {
+      console.log('The snackbar was dismissed');
+    });
+
+    snackBarRef.onAction().subscribe(() => {
+      console.log('The snackbar action was triggered');
+    });
+  }
+
+  openDialog () {
+    let dialogRef = this.dialog.open(DialogComponent, {data: {name: 'Vshwas'}});
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(`Dialog result: ${result}`);
+    })
+  }
+
+
 
 }

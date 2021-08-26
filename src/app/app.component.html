@@ -257,3 +257,40 @@
     </mat-autocomplete>
   </mat-form-field>
 </form>
+
+<mat-checkbox>
+  Subscribe
+</mat-checkbox>
+
+<br>
+
+<mat-checkbox labelPosition="before" color="warn">
+  Subscribe
+</mat-checkbox>
+
+<mat-radio-group>
+  <mat-radio-button value="angular">Angular</mat-radio-button>
+  <mat-radio-button value="react">React</mat-radio-button>
+  <mat-radio-button value="vue">Vue</mat-radio-button>
+</mat-radio-group>
+
+<mat-form-field>
+  <input matInput [matDatepicker]="myDatePicker" [min]="minDate" [max]="maxDate">
+  <mat-datepicker-toggle matSuffix></mat-datepicker-toggle>
+  <mat-datepicker #myDatePicker></mat-datepicker>
+</mat-form-field>
+
+<button 
+  mat-raised-button
+  matTooltip="Welcome to Codevolution"
+  matTooltipPosition="after"
+  matTooltipShowDelay="2000"
+ >
+ Hello
+</button>
+
+<button mat-button (click)="openSnackBar('ItemDeleted', 'Undo')">
+  Delete
+</button>
+
+<button mat-raised-button (click)="openDialog()">Open Dialog</button>
